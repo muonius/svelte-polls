@@ -15,6 +15,11 @@
 <main>
   <!-- pass in a prop -->
   <Tabs {activeItem} {items} on:tabChange={tabChange} />
+  {#if activeItem === "Current Polls"}
+    <p>Poll list component goes here</p>
+  {:else if activeItem == "Add New Poll"}
+    <p>New poll from component goes here</p>
+  {/if}
 </main>
 <Footer />
 
