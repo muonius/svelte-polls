@@ -1,17 +1,20 @@
 <script>
   import Header from "./components/Header.svelte";
   import Footer from "./components/Footer.svelte";
+  import Tabs from "./shared/Tabs.svelte";
+  //tabs
+  let items = ["Current Polls", "Add New Poll"];
+  let activeItem = "Current Polls";
+  const tabChange = (e) => {
+    activeItem = e.detail;
+  };
 </script>
 
 <Header />
 
 <main>
-  <p>
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, corrupti
-    laborum deleniti beatae iste quidem voluptas et ipsum aperiam similique
-    excepturi! Corporis exercitationem quis nobis natus officia, suscipit
-    laudantium vero!
-  </p>
+  <!-- pass in a prop -->
+  <Tabs {activeItem} {items} on:tabChange={tabChange} />
 </main>
 <Footer />
 
