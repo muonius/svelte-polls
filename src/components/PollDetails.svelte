@@ -4,6 +4,8 @@
   export let poll;
   // reactive values
   $: totalVotes = poll.votesA + poll.votesB;
+  $: percentA = Math.floor((100 / totalVotes) * poll.votesA);
+  $: percentB = Math.floor((100 / totalVotes) * poll.votesB);
 
   //handleVote
   const dispatch = createEventDispatcher();
@@ -23,7 +25,8 @@
         handleVote("a", poll.id);
       }}
     >
-      <div class="percent percent-a" />
+      <div class="percent percent-a" style="width: {percentA}%" />
+      <!-- use dynamic values -->
       <span>{poll.answerA} ({poll.votesA} votes)</span>
     </div>
     <div
@@ -32,7 +35,7 @@
         handleVote("b", poll.id);
       }}
     >
-      <div class="percent percent-b" />
+      <div class="percent percent-b" style="width: {percentB}%" />
       <span>{poll.answerB} ({poll.votesB} votes)</span>
     </div>
   </div>
@@ -61,5 +64,23 @@
   span {
     display: inline-block;
     padding: 10px 20px;
+  }
+
+  .percent {
+    height: 100%;
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .percent-a {
+    /* width: 25%; */
+    border-left: 4px solid #d91b42;
+    background: rgba(217, 27, 66, 0.2);
+  }
+
+  .percent-b {
+    /* width: 75%; */
+    border-left: 4px solid #45c496;
+    background: rgba(69, 196, 150, 0.2);
   }
 </style>
