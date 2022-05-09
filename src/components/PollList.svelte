@@ -3,10 +3,12 @@
   export let polls = [];
 </script>
 
+<!-- invoke casting vote event here, event forwarding -->
 <div class="poll-list">
   {#each polls as poll (poll.id)}
     <div>
-      <PollDetails {poll} />
+      <!-- event forwarding to parent -->
+      <PollDetails {poll} on:vote />
     </div>
   {/each}
 </div>
