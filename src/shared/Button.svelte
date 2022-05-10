@@ -5,7 +5,8 @@
   export let inverse = false;
 </script>
 
-<button class={type} class:flat class:inverse>
+<!-- add on:click event and forward it to parent component -->
+<button class={type} class:flat class:inverse on:click>
   <slot />
 </button>
 
