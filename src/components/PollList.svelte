@@ -1,6 +1,9 @@
 <script>
   // import { onMount } from "svelte";
   // import { onDestroy } from "svelte";
+  // can only use transition elements on html element, not custom element
+  import { fade, slide, scale } from "svelte/transition";
+  import { flip } from "svelte/animate";
   import PollStore from "../stores/PollStore.js";
   import PollDetails from "./PollDetails.svelte";
 
@@ -29,7 +32,11 @@
 <div class="poll-list">
   <!-- EASY LIFECYCLE HOOKS, automatically sub and unsub -->
   {#each $PollStore as poll (poll.id)}
-    <div>
+    <!-- add subtle transition -->
+    <div in:fade out:scale|local animate:flip={{ duration: 500 }}>
+      <!-- local means only when one item is removed -->
+      <!-- animation adds a slide in event when one card is removed -->
+      <!-- <div transition:fade> -->
       <!-- event forwarding to parent -->
       <PollDetails {poll} on:vote />
     </div>
