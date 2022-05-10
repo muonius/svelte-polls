@@ -4,6 +4,9 @@
   import CreatePollForm from "./components/CreatePollForm.svelte";
   import PollList from "./components/PollList.svelte";
   import Tabs from "./shared/Tabs.svelte";
+  import { tweened } from "svelte/motion";
+  //tweened is a bit like stored writable
+  const value = tweened(0);
 
   // tabs
   let items = ["Current Polls", "Add New Poll"];
@@ -13,6 +16,9 @@
     activeItem = "Current Polls";
   };
 </script>
+
+<!-- tween store will have a transitioned value between 0 and 1 -->
+<button on:click={() => value.set(1)}>{$value}</button>
 
 <Header />
 <main>
